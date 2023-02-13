@@ -10,14 +10,15 @@ const successMsg = chalk.bgKeyword('green').white;
 const bodyParser =require ('body-parser')
 
 const app = express();
-
+const MONGO_URL='mongodb+srv://Hanna-ZAM:PASS789@cluster0.gzl4z8j.mongodb.net/clone-trello?retryWrites=true&w=majority'
+const PORT = 3001;
 mongoose
-  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((res) => console.log(successMsg('Connected to DB')))
   .catch((error) => console.log(errorMsg(error)));
 
-app.listen(process.env.PORT, (error) => {
-  error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${process.env.PORT}`));
+app.listen(PORT, (error) => {
+  error ? console.log(errorMsg(error)) : console.log(successMsg(`listening port ${PORT}`));
 });
 
 app.use(express.urlencoded({ extended: false }));
