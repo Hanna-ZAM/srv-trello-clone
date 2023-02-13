@@ -3,14 +3,14 @@ const {
   getUser,
   addUser,
   
-} = require('../controllers/api-post-controller');
+} = require('../controllers/api-user-controller');
 
 const router = express.Router();
 
 // Get All Posts
-router.get('/api/posts', getUser);
+router.get('/:login', getUser);
 // Add New Post
-router.post('/api/post/', addUser);
+router.post('/', addUser);
 // Get Post by ID
 /*router.get('/api/post/:id', getPost);
 // Delete Post by ID

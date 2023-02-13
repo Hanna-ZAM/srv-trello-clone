@@ -5,15 +5,11 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const methodOverride = require('method-override');
 const userApiRoutes = require('./routes/api-post-routes');
-
-
 const errorMsg = chalk.bgKeyword('white').redBright;
 const successMsg = chalk.bgKeyword('green').white;
+const bodyParser =require ('body-parser')
 
 const app = express();
-
-/*app.set('view engine', 'ejs');*/
-
 
 mongoose
   .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -25,24 +21,14 @@ app.listen(process.env.PORT, (error) => {
 });
 
 app.use(express.urlencoded({ extended: false }));
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
-
-/*app.use(express.static('styles'));*/
 
 app.use(methodOverride('_method'));
 
-app.get('/', (req, res) => {
-  const title = 'Home';
-  res.render(createPath('index'), { title });
-});
 
 
 app.use(userApiRoutes);
 
-app.use((req, res) => {
-  const title = 'Error Page';
-  res
-    .status(404)
-    .render(createPath('error'), { title });
-});
+
