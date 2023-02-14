@@ -1,11 +1,7 @@
-const express = require('express');
-const {
-  getUser,
-  addUser,
-  
-} = require('../controllers/api-user-controller');
+import express from 'express';
+import  { getUser, addUser } from '../controllers/api-user-controller';
 
-const router = express.Router();
+export const router = express.Router();
 
 // Get All Posts
 router.get('/:login', getUser);
@@ -18,4 +14,4 @@ router.delete('/api/post/:id', deletePost);
 // Update Post by ID
 router.put('/api/post/:id', editPost);*/
 
-module.exports = router;
+/*module.exports = router;*/
