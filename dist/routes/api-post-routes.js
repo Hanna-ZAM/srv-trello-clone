@@ -7,14 +7,18 @@ exports.router = void 0;
 const express_1 = __importDefault(require("express"));
 const api_user_controller_1 = require("../controllers/api-user-controller");
 exports.router = express_1.default.Router();
-// Get All Posts
+// Get User by Login
 exports.router.get('/:login', api_user_controller_1.getUser);
-// Add New Post
+// Add New User
 exports.router.post('/', api_user_controller_1.addUser);
-// Get Post by ID
-/*router.get('/api/post/:id', getPost);
+// Get Project by ID
+exports.router.get('/projects/:id', api_user_controller_1.getProject);
+exports.router.get('/projects/columns/:id', api_user_controller_1.getColumn);
+exports.router.get('/projects/columns/cards/:id', api_user_controller_1.getCard);
+// Get Column by ID
+/*router.get('/projects/:id', getProject);
 // Delete Post by ID
-router.delete('/api/post/:id', deletePost);
+/*router.delete('/api/post/:id', deletePost);
 // Update Post by ID
 router.put('/api/post/:id', editPost);*/
 /*module.exports = router;*/

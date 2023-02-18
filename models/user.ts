@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   login: {
     type: String,
-   /* required: true,*/
+    required: true,
   },
   password: {
     type: String,
-    /*required: true,*/
+    required: true,
   },
   name: {
     type: String,
@@ -17,6 +17,10 @@ const userSchema = new Schema({
   surname: {
     type: String,
    /* required: true,*/
+  },
+  projects:{
+    type: [String],
+    default:[]
   }
 });
 
