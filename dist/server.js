@@ -26,6 +26,7 @@ app.listen(PORT, () => {
 app.use(express_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
+/*app.use(express.json());*/
 app.use((0, morgan_1.default)(':method :url :status :res[content-length] - :response-time ms'));
 app.use((0, method_override_1.default)('_method'));
 app.use(api_post_routes_1.router);
