@@ -1,21 +1,25 @@
 import express from 'express';
-import  { getUser, addUser, getProject, getColumn, getCard } from '../controllers/api-user-controller';
+import  { getUser, addUser, changeUser, getProject, changeProject, addProject, deleteProject, getColumn, changeColumn, addColumn, deleteColumn, getCard, changeCard, addCard, deleteCard} from '../controllers/api-user-controller';
 
 export const router = express.Router();
 
 // Get User by Login
 router.get('/:login', getUser);
-// Add New User
 router.post('/', addUser);
+router.put('/:login', changeUser);
 // Get Project by ID
 router.get('/projects/:id', getProject);
-router.get('/projects/columns/:id', getColumn);
-router.get('/projects/columns/cards/:id', getCard);
-// Get Column by ID
-/*router.get('/projects/:id', getProject);
-// Delete Post by ID
-/*router.delete('/api/post/:id', deletePost);
-// Update Post by ID
-router.put('/api/post/:id', editPost);*/
+router.post('/projects/', addProject);
+router.put('/projects/:id', changeProject);
+router.delete('/projects/:id', deleteProject);
 
-/*module.exports = router;*/
+router.get('/projects/columns/:id', getColumn);
+router.post('/projects/columns/', addColumn);
+router.put('/projects/columns/:id', changeColumn);
+router.delete('/projects/columns/:id', deleteColumn);
+
+router.get('/projects/columns/cards/:id', getCard);
+router.post('/projects/columns/cards/', addCard);
+router.put('/projects/columns/cards/:id', changeCard);
+router.delete('/projects/columns/cards/:id', deleteCard);
+

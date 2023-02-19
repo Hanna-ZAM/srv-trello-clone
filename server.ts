@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 /*app.use(express.json());*/
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
-
+mongoose.set('useFindAndModify', false);
 app.use(methodOverride('_method'));
 
 
