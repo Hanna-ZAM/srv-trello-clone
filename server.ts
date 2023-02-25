@@ -23,6 +23,7 @@ app.listen(PORT, ():void => {
   console.log(successMsg(`listening port ${PORT}`));
 });
 
+
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -34,5 +35,4 @@ app.use(methodOverride('_method'));
 
 
 app.use(router);
-
 

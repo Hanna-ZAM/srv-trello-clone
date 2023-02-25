@@ -1,5 +1,5 @@
 export type userType = {
-  id: number,
+  id: string,
   login: string,
   password: string,
   name: string,
@@ -15,7 +15,7 @@ export type bodyUserType = {
 };
 
 export type ProjectType ={
-  id: string,
+  id: number,
   name: string,
   key: string,
   lead: string,
@@ -25,6 +25,7 @@ export type ProjectType ={
 };
 
 export type bodyProjectType= {
+  id: number,
   name: string,
   key: string,
   lead: string,
@@ -35,21 +36,23 @@ export type bodyProjectType= {
 
 export type ProjectColumnsType ={
   title: string,
-  id: string,
+  id: number,
   cards: ProjectCardType[]|string[]
 };
 
 export type bodyProjectColumnsType ={
+  id: number,
   title: string,
   cards: ProjectCardType[]|string[]
 };
 
 export type ProjectCardType= {
-  id: string,
+  id: number,
   text: string
 }
 
 export type bodyProjectCardType= {
+  id: number,
   text: string
 }
 

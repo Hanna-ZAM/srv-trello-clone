@@ -7,6 +7,9 @@ exports.Column = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const columnSchema = new Schema({
+    id: {
+        type: Number,
+    },
     title: {
         type: String,
     },

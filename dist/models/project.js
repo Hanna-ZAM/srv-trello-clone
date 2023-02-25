@@ -7,6 +7,9 @@ exports.Project = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const projectSchema = new Schema({
+    id: {
+        type: Number,
+    },
     name: {
         type: String,
     },
