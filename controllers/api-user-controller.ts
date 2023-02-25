@@ -3,12 +3,12 @@ import {Project} from '../models/project';
 import {Column} from '../models/column';
 import {Card} from '../models/card';
 import  {bodyUserType, ProjectType, userType, ProjectColumnsType, ProjectCardType}  from '../models/types';
-import { Request, Response} from 'express';
+import { NextFunction, Request, Response} from 'express';
 import * as qs from 'qs'
 
 const options={
   "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "anoplich.github.io/rs-trello",
+  "Access-Control-Allow-Origin": "kanoplich.github.io/rs-trello",
   "Access-Control-Allow-Credentials" : 'true ',
 };
 
@@ -226,3 +226,12 @@ export const changeCard = (req:Request, res:Response) => {
   getUser,
   addUser,
 };*/
+
+
+export const getOptions = (req:Request, res:Response)=>{
+  res.header('Access-Control-Allow-Origin', "kanoplich.github.io/rs-trello");
+res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+res.header('Access-Control-Allow-Credentials', 'true')
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.sendStatus(200);
+}
