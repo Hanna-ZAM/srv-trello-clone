@@ -113,7 +113,7 @@ export const addUser = (req:Request, res:Response) => {
       const  _id  = req.params.id;
       Project
       .findByIdAndDelete(_id)
-      .then((project:ProjectType) => res.status(200).json(_id))
+      .then((project:ProjectType) => res.set(options).status(200).json(_id))
       .catch((error:Error) => handleError(res, error));
     }
 
@@ -166,7 +166,7 @@ export const addUser = (req:Request, res:Response) => {
       const  _id = req.params.id;
       Column
       .findByIdAndDelete(_id)
-      .then((column:ProjectColumnsType) => res.status(200).json(_id))
+      .then((column:ProjectColumnsType) => res.set(options).status(200).json(_id))
       .catch((error:Error) => handleError(res, error));
     }
 
@@ -219,7 +219,7 @@ export const changeCard = (req:Request, res:Response) => {
       const  _id  = req.params.id;
       Card
       .findByIdAndDelete(_id)
-      .then((cardOld:ProjectCardType) => res.status(200).json(_id))
+      .then((cardOld:ProjectCardType) => res.set(options).status(200).json(_id))
       .catch((error:Error) => handleError(res, error));
     }
 /*module.exports = {
@@ -229,9 +229,9 @@ export const changeCard = (req:Request, res:Response) => {
 
 
 export const getOptions = (req:Request, res:Response)=>{
-  res.header('Access-Control-Allow-Origin', "kanoplich.github.io/rs-trello");
-res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-res.header('Access-Control-Allow-Credentials', 'true')
+  res.header('Access-Control-Allow-Origin', "https://kanoplich.github.io");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Credentials', 'true')
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   res.sendStatus(200);
 }

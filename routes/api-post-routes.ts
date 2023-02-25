@@ -5,12 +5,12 @@ export const router = express.Router();
 
 const corsOptions={
     origin: "https://kanoplich.github.io",
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204,
   }
 
   const issue2options = {
-    origin: true,
-    methods: ["PUT"],
+    origin: "https://kanoplich.github.io",
+    methods: ["PUT", "DELETE", "POST", "GET"],
     credentials: true,
   };
 

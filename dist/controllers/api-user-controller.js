@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCard = exports.changeCard = exports.addCard = exports.getCard = exports.deleteColumn = exports.changeColumn = exports.addColumn = exports.getColumn = exports.deleteProject = exports.changeProject = exports.addProject = exports.getProject = exports.changeUser = exports.addUser = exports.getUser = void 0;
+exports.getOptions = exports.deleteCard = exports.changeCard = exports.addCard = exports.getCard = exports.deleteColumn = exports.changeColumn = exports.addColumn = exports.getColumn = exports.deleteProject = exports.changeProject = exports.addProject = exports.getProject = exports.changeUser = exports.addUser = exports.getUser = void 0;
 const user_1 = require("../models/user");
 const project_1 = require("../models/project");
 const column_1 = require("../models/column");
@@ -130,7 +130,7 @@ const deleteProject = (req, res) => {
     const _id = req.params.id;
     project_1.Project
         .findByIdAndDelete(_id)
-        .then((project) => res.status(200).json(_id))
+        .then((project) => res.set(options).status(200).json(_id))
         .catch((error) => handleError(res, error));
 };
 exports.deleteProject = deleteProject;
@@ -183,7 +183,7 @@ const deleteColumn = (req, res) => {
     const _id = req.params.id;
     column_1.Column
         .findByIdAndDelete(_id)
-        .then((column) => res.status(200).json(_id))
+        .then((column) => res.set(options).status(200).json(_id))
         .catch((error) => handleError(res, error));
 };
 exports.deleteColumn = deleteColumn;
@@ -236,7 +236,7 @@ const deleteCard = (req, res) => {
     const _id = req.params.id;
     card_1.Card
         .findByIdAndDelete(_id)
-        .then((cardOld) => res.status(200).json(_id))
+        .then((cardOld) => res.set(options).status(200).json(_id))
         .catch((error) => handleError(res, error));
 };
 exports.deleteCard = deleteCard;
@@ -244,4 +244,12 @@ exports.deleteCard = deleteCard;
   getUser,
   addUser,
 };*/
+const getOptions = (req, res) => {
+    res.header('Access-Control-Allow-Origin', "http://localhost:3000");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    res.sendStatus(200);
+};
+exports.getOptions = getOptions;
 //# sourceMappingURL=api-user-controller.js.map
