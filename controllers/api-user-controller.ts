@@ -8,7 +8,7 @@ import * as qs from 'qs'
 
 const options={
   "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "https://kanoplich.github.io",
+  "Access-Control-Allow-Origin": "anoplich.github.io/rs-trello",
   "Access-Control-Allow-Credentials" : 'true ',
 };
 
@@ -41,7 +41,7 @@ export const addUser = (req:Request, res:Response) => {
       .save()
       .then((us) => res.set(options).status(200).json(user))
     } else {
-      res.set(options).status(501).send('rere')
+      res.set(options).status(501).send(`user ${name} already exists`)
     }})
     .catch((error:Error) =>{
       handleError(res, error)
@@ -49,7 +49,8 @@ export const addUser = (req:Request, res:Response) => {
   }
 
   export const changeUser = (req:Request, res:Response) => {
-    const { _id, login , password, name, surname, projects} = qs.parse(req.body);
+    const _id = req.params.id;
+    const {  login , password, name, surname, projects} = qs.parse(req.body);
     console.log(_id);
     User
     .findByIdAndUpdate(_id, { login , password, name, surname, projects }, { new: true })
@@ -75,13 +76,13 @@ export const addUser = (req:Request, res:Response) => {
    }
 
    export const addProject = (req:Request, res:Response) => {
-    const { name , key, lead, type, checked, columns} = qs.parse(req.body);
+    const { id, name , key, lead, type, checked, columns} = qs.parse(req.body);
     /*Project
     .find({name})
     .then((projects:ProjectType[]) =>  {
 
      if (!projects.length) {*/
-        const project = new Project({name , key, lead, type, checked, columns});
+        const project = new Project({id, name , key, lead, type, checked, columns});
         console.log(project)
       project
         .save()
@@ -96,10 +97,10 @@ export const addUser = (req:Request, res:Response) => {
 
    export const changeProject = (req:Request, res:Response) => {
     const _id=req.params.id;
-    const { name , key, lead, type, checked, columns} = qs.parse(req.body);
+    const {id, name , key, lead, type, checked, columns} = qs.parse(req.body);
     console.log(_id);
     Project
-    .findByIdAndUpdate(_id, { name , key, lead, type, checked, columns }, { new: true })
+    .findByIdAndUpdate(_id, {id, name , key, lead, type, checked, columns }, { new: true })
     .then((project:ProjectType) =>  {
       console.log(project)
            res.set(options).status(200).json(project)
@@ -128,13 +129,13 @@ export const addUser = (req:Request, res:Response) => {
    }
 
    export const addColumn = (req:Request, res:Response) => {
-    const { title, cards} =qs.parse(req.body);
+    const { id, title, cards} =qs.parse(req.body);
     /*Project
     .find({name})
     .then((projects:ProjectType[]) =>  {
 
      if (!projects.length) {*/
-        const column = new Column({title, cards});
+        const column = new Column({id, title, cards});
         console.log(column)
       column
         .save()
@@ -149,10 +150,10 @@ export const addUser = (req:Request, res:Response) => {
 
    export const changeColumn = (req:Request, res:Response) => {
     const _id=req.params.id;
-    const { title, cards} = qs.parse(req.body);
+    const {id, title, cards} = qs.parse(req.body);
     console.log(_id);
     Column
-    .findByIdAndUpdate(_id, { title, cards }, { new: true })
+    .findByIdAndUpdate(_id, { id, title, cards }, { new: true })
     .then((column:ProjectColumnsType) =>  {
       console.log(column)
            res.set(options).status(200).json(column)
@@ -180,14 +181,14 @@ export const addUser = (req:Request, res:Response) => {
    }
 
    export const addCard = (req:Request, res:Response) => {
-    const {text} = qs.parse(req.body);
+    const {id, text} = qs.parse(req.body);
     console.log(req.body)
     /*Project
     .find({name})
     .then((projects:ProjectType[]) =>  {
 
      if (!projects.length) {*/
-        const card = new Card({text});
+        const card = new Card({id, text});
        /* console.log(card)*/
       card
         .save()
@@ -202,10 +203,10 @@ export const addUser = (req:Request, res:Response) => {
 
 export const changeCard = (req:Request, res:Response) => {
     const _id=req.params.id;
-    const { text} = qs.parse(req.body);
+    const {id, text} = qs.parse(req.body);
     console.log(_id);
     Card
-    .findByIdAndUpdate(_id, { text }, { new: true })
+    .findByIdAndUpdate(_id, {id,  text }, { new: true })
     .then((card:ProjectCardType) =>  {
       console.log(card)
            res.set(options).status(200).json(card)

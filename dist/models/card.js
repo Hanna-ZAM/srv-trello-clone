@@ -7,6 +7,9 @@ exports.Card = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const Schema = mongoose_1.default.Schema;
 const cardSchema = new Schema({
+    id: {
+        type: Number,
+    },
     text: {
         type: String,
     },

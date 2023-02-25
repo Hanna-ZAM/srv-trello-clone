@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const projectSchema = new Schema({
 
+    id: {
+      type: Number,
+    },
     name: {
       type: String,
     },

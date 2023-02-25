@@ -60,7 +60,7 @@ const addUser = (req, res) => {
                 .then((us) => res.set(options).status(200).json(user));
         }
         else {
-            res.set(options).status(501).send('rere');
+            res.set(options).status(501).send(`user ${name} already exists`);
         }
     })
         .catch((error) => {
@@ -69,7 +69,8 @@ const addUser = (req, res) => {
 };
 exports.addUser = addUser;
 const changeUser = (req, res) => {
-    const { _id, login, password, name, surname, projects } = qs.parse(req.body);
+    const _id = req.params.id;
+    const { login, password, name, surname, projects } = qs.parse(req.body);
     console.log(_id);
     user_1.User
         .findByIdAndUpdate(_id, { login, password, name, surname, projects }, { new: true })
@@ -92,13 +93,13 @@ const getProject = (req, res) => {
 };
 exports.getProject = getProject;
 const addProject = (req, res) => {
-    const { name, key, lead, type, checked, columns } = qs.parse(req.body);
+    const { id, name, key, lead, type, checked, columns } = qs.parse(req.body);
     /*Project
     .find({name})
     .then((projects:ProjectType[]) =>  {
 
      if (!projects.length) {*/
-    const project = new project_1.Project({ name, key, lead, type, checked, columns });
+    const project = new project_1.Project({ id, name, key, lead, type, checked, columns });
     console.log(project);
     project
         .save()
@@ -113,10 +114,10 @@ const addProject = (req, res) => {
 exports.addProject = addProject;
 const changeProject = (req, res) => {
     const _id = req.params.id;
-    const { name, key, lead, type, checked, columns } = qs.parse(req.body);
+    const { id, name, key, lead, type, checked, columns } = qs.parse(req.body);
     console.log(_id);
     project_1.Project
-        .findByIdAndUpdate(_id, { name, key, lead, type, checked, columns }, { new: true })
+        .findByIdAndUpdate(_id, { id, name, key, lead, type, checked, columns }, { new: true })
         .then((project) => {
         console.log(project);
         res.set(options).status(200).json(project);
@@ -145,13 +146,13 @@ const getColumn = (req, res) => {
 };
 exports.getColumn = getColumn;
 const addColumn = (req, res) => {
-    const { title, cards } = qs.parse(req.body);
+    const { id, title, cards } = qs.parse(req.body);
     /*Project
     .find({name})
     .then((projects:ProjectType[]) =>  {
 
      if (!projects.length) {*/
-    const column = new column_1.Column({ title, cards });
+    const column = new column_1.Column({ id, title, cards });
     console.log(column);
     column
         .save()
@@ -166,10 +167,10 @@ const addColumn = (req, res) => {
 exports.addColumn = addColumn;
 const changeColumn = (req, res) => {
     const _id = req.params.id;
-    const { title, cards } = qs.parse(req.body);
+    const { id, title, cards } = qs.parse(req.body);
     console.log(_id);
     column_1.Column
-        .findByIdAndUpdate(_id, { title, cards }, { new: true })
+        .findByIdAndUpdate(_id, { id, title, cards }, { new: true })
         .then((column) => {
         console.log(column);
         res.set(options).status(200).json(column);
@@ -197,14 +198,14 @@ const getCard = (req, res) => {
 };
 exports.getCard = getCard;
 const addCard = (req, res) => {
-    const { text } = qs.parse(req.body);
+    const { id, text } = qs.parse(req.body);
     console.log(req.body);
     /*Project
     .find({name})
     .then((projects:ProjectType[]) =>  {
 
      if (!projects.length) {*/
-    const card = new card_1.Card({ text });
+    const card = new card_1.Card({ id, text });
     /* console.log(card)*/
     card
         .save()
@@ -219,10 +220,10 @@ const addCard = (req, res) => {
 exports.addCard = addCard;
 const changeCard = (req, res) => {
     const _id = req.params.id;
-    const { text } = qs.parse(req.body);
+    const { id, text } = qs.parse(req.body);
     console.log(_id);
     card_1.Card
-        .findByIdAndUpdate(_id, { text }, { new: true })
+        .findByIdAndUpdate(_id, { id, text }, { new: true })
         .then((card) => {
         console.log(card);
         res.set(options).status(200).json(card);
