@@ -4,7 +4,7 @@ import cors from 'cors';
 export const router = express.Router();
 
 const corsOptions={
-    origin: "kanoplich.github.io/rs-trello",
+    origin: "https://kanoplich.github.io",
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
 
