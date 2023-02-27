@@ -8,7 +8,7 @@ import * as qs from 'qs'
 
 const options={
   "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "https://kanoplich.github.io",
+  "Access-Control-Allow-Origin": "http://localhost:3000",
   "Access-Control-Allow-Credentials" : 'true ',
 };
 

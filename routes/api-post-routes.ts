@@ -4,12 +4,12 @@ import cors from 'cors';
 export const router = express.Router();
 
 const corsOptions={
-    origin: "https://kanoplich.github.io",
+    origin: "http://localhost:3000",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204,
   }
 
   const issue2options = {
-    origin: "https://kanoplich.github.io",
+    origin: "http://localhost:3000",
     methods: ["PUT", "DELETE", "POST", "GET"],
     credentials: true,
   };
